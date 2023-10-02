@@ -15,9 +15,12 @@ public class PracticForm {
         $("[class=custom-control-label]").click();
         $("[id=userNumber]").setValue("89656876462");
         $("[id=dateOfBirthInput]").click();
-        $("[class=react-datepicker__year-select]").selectOption("1999");
-        $("[class=react-datepicker__month-select]").selectOption("April");
-
+        $("[id=dateOfBirthInput]").setValue("\b\b\b\b\b\b\b\b\b\b");
+        $("[id=dateOfBirthInput]").setValue("19 Apr 1999");
+        $("[id=subjects-auto-complete__value-container]").setValue("Maths");
+        //$("[class=react-datepicker__year-select]").selectOption("1999");
+        //$("[class=react-datepicker__month-select]").selectOption("April");
+        //$("[class=react-datepicker__day--019]").selectOption(19);
 
 
     }
