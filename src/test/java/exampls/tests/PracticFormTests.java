@@ -1,17 +1,23 @@
 package exampls.tests;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class PracticFormTests {
     @Test
     void fillPracticeForm () {
         Configuration.holdBrowserOpen=true;
+        Configuration.browserSize = "1920x1080";
         open("https://demoqa.com/automation-practice-form");
+        executeJavaScript("$('footer').remove()");
 
         $("[id=firstName]").setValue("Egor");
         $("[id=lastName]").setValue("Tellin");
@@ -31,6 +37,21 @@ public class PracticFormTests {
         $("[id=subjectsInput]").setValue("Maths").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#hobbiesWrapper").$(byText("Reading")).click();
+
+        $("#uploadPicture").uploadFromClasspath("img/1.png");
+//        $("#uploadPicture").uploadFile(new File("src/test/resources/img/1.png"));
+
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText("Gurgaon")).click();
+        $("#submit").click();
+
+        $(".modal-dialog").should(appear);
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(text("Egor Tellin"), text("egor21chuv@yandex.ru"), text("89656876462"));
+
+
 
 
 
